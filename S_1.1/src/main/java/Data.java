@@ -1,7 +1,7 @@
 import java.util.Objects;
 public class Data {
-    String name;
-    double value;
+    private final String name;
+    private final double value;
     public Data(double value, String name) {
         this.name = name;
         this.value = value;
