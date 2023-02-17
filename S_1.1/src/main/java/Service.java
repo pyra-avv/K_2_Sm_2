@@ -3,25 +3,38 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 
 public class Service {
-    public static Collection<String> Selection1(ArrayList<Data> arr, String name) {
-        Collection<String> col = new ArrayList<>();
+    /*
+     По списку элементов типа Data и строке name отобрать те элементы списка, имена
+     которых равны name. Результат вернуть в виде коллекции.
+     */
+    public static Collection<Data> Selection1(ArrayList<Data> arr, String name) {
+        Collection<Data> col = new ArrayList<>();
         for (Data data : arr) {
             if (data.getName().equals(name)) {
-                col.add(data.getName());
+                col.add(data);
             }
         }
         return col;
     }
-    public static Collection<Double> Selection2(ArrayList<Data> arr, double level) {
-        Collection<Double> col = new ArrayList<>();
+    /*
+     По списку элементов типа Data и вещ. числу level отобрать и вернуть в виде коллекции
+     те элементы списка, у которых |value| <= level.
+    */
+    public static Collection<Data> Selection2(ArrayList<Data> arr, double level) {
+        Collection<Data> col = new ArrayList<>();
         for (Data data : arr) {
             if (Math.abs(data.getValue()) <= level) {
-                col.add(data.getValue());
+                col.add(data);
             }
         }
         return col;
     }
-    public static LinkedHashSet<Double> Selection3(ArrayList<Data> arr, String[] names) {
+    /*
+     По списку элементов типа Data и множеству names строк выбрать элементы списка,
+     имена которых содержатся во множестве names. В качестве результата вернуть
+     множество вещественных чисел – значения полей value отобранных элементов.
+    */
+    public static LinkedHashSet<Double> Selection3(ArrayList<Data> arr, LinkedHashSet<String> names) {
         LinkedHashSet<Double> col = new LinkedHashSet<>();
         for (Data data : arr) {
             for (String str : names) {
@@ -32,10 +45,16 @@ public class Service {
         }
         return col;
     }
+    /*
+     По списку элементов типа Data выбрать элементы, для которых значение поля value
+     положительное. В качестве результата вернуть массив строк – имен отобранных
+     элементов. Массив должен содержать только уникальные имена (т.е. имена без
+     повторений).
+     */
     public static String[] Selection4(ArrayList<Data> arr) {
         LinkedHashSet<String> col = new LinkedHashSet<>();
         for (Data data : arr) {
-            if (Math.abs(data.getValue()) > 0) {
+            if (data.getValue() > 0) {
                 col.add(data.getName());
             }
         }
@@ -47,7 +66,9 @@ public class Service {
         }
         return sArr;
     }
-    // надо делать с датой
+    /*
+     По списку множеств построить объединение всех множеств списка.
+     */
     public static LinkedHashSet<Data> Union(Collection<LinkedHashSet<Data>> col) {
         LinkedHashSet<Data> all = new LinkedHashSet<>();
         for (LinkedHashSet<Data> c : col) {
@@ -55,7 +76,11 @@ public class Service {
         }
         return all;
     }
-    public static ArrayList<LinkedHashSet<Data>> MaxSize(ArrayList<LinkedHashSet<Data>> list) {
+    /*
+     Из списка множеств выбрать все множества максимального размера. Вернуть
+     результат в виде списка отобранных множеств.
+     */
+    public static ArrayList<LinkedHashSet<Data>> MaxSize(Collection<LinkedHashSet<Data>> list) {
         int max = 0;
         for (LinkedHashSet<Data> m : list) {
             if (m.size() > max) {
@@ -70,10 +95,19 @@ public class Service {
         }
         return Max;
     }
+    /*
+     По списку множеств построить пересечение всех множеств.
+     */
     public static LinkedHashSet<Data> Intersection(Collection<LinkedHashSet<Data>> col) {
         LinkedHashSet<Data> intersection = new LinkedHashSet<>();
+        boolean flag = true;
         for (LinkedHashSet<Data> c : col) {
-            intersection.retainAll(c);
+            if (flag) {
+                intersection.addAll(c);
+                flag = false;
+            } else {
+                intersection.retainAll(c);
+            }
         }
         return intersection;
     }
