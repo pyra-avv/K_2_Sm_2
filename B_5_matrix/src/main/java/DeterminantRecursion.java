@@ -15,7 +15,7 @@ public class DeterminantRecursion {
                         continue;
                     }
                     B[x][y] = A[j][k];
-                    ++y;
+                    y++;
                     if (y == n - 1) {
                         y = 0;
                         x++;

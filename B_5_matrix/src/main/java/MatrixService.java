@@ -1,3 +1,3 @@
 public class MatrixService {
-    public static void arrangeMatrices(Matrix)
+    //public static void arrangeMatrices(Matrix)
 }

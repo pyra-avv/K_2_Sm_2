@@ -7,27 +7,20 @@ public class DataSet {
     public DataSet() {
         this.list = new ArrayList<>();
     }
-    public void setAdd(Data data) {
+    public void set(Data data) {
         list.add(data);
     }
-//    @Override
-//    public Iterator<Data>() {
-//        return new Iterator<Data>()
-//        {
-//            private int i = 0;
-//            @Override
-//            public boolean hasNext() {
-//                return (i < list.size() && array[i] != null);
-//            }
-//            @Override
-//            public Data next()
-//            {
-//                if (!hasNext()) {
-//                    throw new NoSuchElementException();
-//                }
-//                return array[i++];
-//            }
-//        };
-//    }
+    public Data get(int i) {
+        return list.get(i);
+    }
+    public void Sort() {
+
+
+
+    }
+
+
+
+
 
 }
