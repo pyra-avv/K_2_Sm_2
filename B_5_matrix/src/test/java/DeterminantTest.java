@@ -12,24 +12,18 @@ class DeterminantTest {
             matrix1.setIJ(arrT1[i],i / 3,i % 3);
         }
         assertEquals(0, -matrix1.Determinant());
-        /*double[] arrT2 = { 1, 2, 3, 0, 0, 0, 7, 8, 9 };
+        double[] arrT2 = { 1, 2, 3, 0, 0, 0, 7, 8, 9 };
         Matrix matrix2 = new Matrix(3);
         for (int i = 0; i < arrT2.length; i++) {
             matrix2.setIJ(arrT2[i],i / 3,i % 3);
         }
-        //assertEquals(0, matrix2.Determinant());
+        assertEquals(0, matrix2.Determinant());
         double[] arrT3 = { 1, 2, 3, 0, 1, 6, 0, 0, 9 };
         Matrix matrix3 = new Matrix(3);
         for (int i = 0; i < arrT3.length; i++) {
             matrix3.setIJ(arrT3[i],i / 3,i % 3);
         }
         assertEquals(9, matrix3.Determinant());
-        double[] arrT4 = { 1, 2, 3, 2, 4, 6, 7, 8, 9 };
-        Matrix matrix4 = new Matrix(3);
-        for (int i = 0; i < arrT2.length; i++) {
-            matrix4.setIJ(arrT4[i],i / 3,i % 3);
-        }
-        //assertEquals(0, matrix4.Determinant());*/
         Matrix matrix5 = new Matrix(1);
         matrix5.setIJ(5, 0, 0);
         assertEquals(5, matrix5.Determinant());

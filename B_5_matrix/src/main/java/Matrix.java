@@ -1,5 +1,8 @@
 import java.util.Arrays;
 
+//import static sun.jvm.hotspot.gc.shared.CollectedHeapName.EPSILON;
+
+
 public class Matrix implements IMatrix { // квадратная матрица произвольного вида
     private double[] arr;
     private final int n;
@@ -36,45 +39,43 @@ public class Matrix implements IMatrix { // квадратная матрица 
         flag = false;
     }
     @Override
-    public double Determinant() {
+    public double Determinant() { // поиск определителя
         if (!flag) {
-            double[][] arrD = new double[n][n];
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    arrD[i][j] = getIJ(i, j);
+            if (ZeroLines(arr)) { // если есть нулевая строка
+                det = 0;
+            } else {
+                double[] m = new double[n * n];
+                System.arraycopy(arr, 0, m, 0, n * n);
+
+                double EPSILON = 10e-9;
+                int lineSwaps = 0;
+                for (int curr = 0; curr < n - 1; curr++) {
+                    int max = curr;
+                    for (int k = curr; k < n; k++) {
+                        if (Math.abs(m[k * n + curr]) > Math.abs(m[max * n + curr])
+                                && Math.abs(m[k * n + curr]) < EPSILON) {
+                            max = k;
+                        }
+                    }
+                    if (max != curr) {
+                        swapLines(m, max, curr);
+                        lineSwaps++;
+                    }
+                    for (int i = curr + 1; i < n; i++) {
+                        double coefficient = m[i * n + curr] / m[curr * n + curr];
+                        for (int j = 0; j < n; j++) {
+                            m[i * n + j] -= m[curr * n + j] * coefficient;
+                        }
+                    }
+                }
+                det = 1;
+                for (int i = 0; i < n; i++) {
+                    det *= m[i * n + i];
+                }
+                if (lineSwaps % 2 != 0) {
+                    det *= -1;
                 }
             }
-//            int countSwaps = 1;
-//            for (int i = 0; i < n; ++ i)
-//            {
-//                // находим строку с максимальным первым элементом
-//                int iMax = i;
-//                for (int j = i + 1; j < n; ++ j)
-//                    if (Math.abs.(arrD[j][i]) > Math.abs.(arrD[iMax][i]))
-//                        iMax = j;
-//                if (Math.abs.(arrD[iMax][i]) < eps))
-//                    continue;
-//                for (int k = 0; k < n; ++ k)
-//                    Arrays.swap.(arrD[i][k], arrD[iMax][k]);
-//                countSwaps = - countSwaps * (i != iMax ? 1 : - 1);
-//
-//                //  вычитаем текущую строку из всех остальных
-//                for (int j = i + 1; j < n; ++ j) {
-//                    double q = - arrD[j][i] / arrD[i][i];
-//                    for (int k = n - 1; k >= i; k--) {
-//                        arrD[j][k] += q * arrD[i][k];
-//                    }
-//                }
-//            }
-
-
-
-
-            det = 1;
-            for (int i = 0; i < n; i++) {
-                det *= arrD[i][i];
-            }
-            //det = DeterminantRecursion.det(arrD);
             flag = true;
         }
         return det;
@@ -102,4 +103,47 @@ public class Matrix implements IMatrix { // квадратная матрица 
     public void setDet(double det) {
         this.det = det;
     }
+    // приватные вспомогательные функции для нахождения определителя
+    private boolean ZeroLines(double[] m) { // проверка на нулевую строку
+        double EPSILON = 10e-9;
+        for (int i = 0; i < n; i++) {
+            boolean flagO = Math.abs(m[i * n]) < EPSILON;
+            int j = -1;
+            while (++j < n) {
+                flagO &= Math.abs(m[i * n + j]) < EPSILON;
+            }
+            if (flagO) {
+                return true;
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            boolean flagO = Math.abs(m[i]) < EPSILON;
+            int j = -1;
+            while (++j < n) {
+                flagO &= Math.abs(m[j * n + i]) < EPSILON;
+            }
+            if (flagO) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    private void swapLines(double[] m, int i, int j) { // перестановка строк
+        for (int k = 0; k < n; k++) {
+            double tmp = m[i * n + k];
+            m[i * n + k] = m[j * n + k];
+            m[j * n + k] = tmp;
+        }
+    }
+
+
+
+
+
+
+
+
+
 }
