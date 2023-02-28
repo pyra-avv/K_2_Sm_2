@@ -1,5 +1,5 @@
 import java.util.Objects;
-public class Data {
+public class Data implements Comparable {
     private final String name;
     private final double value;
     public Data(double value, String name) {
@@ -22,5 +22,18 @@ public class Data {
     @Override
     public int hashCode() {
         return Objects.hash(name, value);
+    }
+    @Override
+    public int compareTo(Object o) {
+        Data d = (Data) o;
+        return this.name.compareTo(d.getName());
+    }
+
+    @Override
+    public String toString() {
+        return "Data{" +
+                "name='" + name + '\'' +
+                ", value=" + value +
+                '}';
     }
 }

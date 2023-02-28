@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class DataSet {
     private ArrayList<Data> list;
@@ -14,13 +12,7 @@ public class DataSet {
         return list.get(i);
     }
     public void Sort() {
-
-
-
+        Collections.sort(list);
     }
-
-
-
-
 
 }

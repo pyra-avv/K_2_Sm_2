@@ -46,25 +46,24 @@ public class Matrix implements IMatrix { // квадратная матрица 
             } else {
                 double[] m = new double[n * n];
                 System.arraycopy(arr, 0, m, 0, n * n);
-
                 double EPSILON = 10e-9;
-                int lineSwaps = 0;
-                for (int curr = 0; curr < n - 1; curr++) {
-                    int max = curr;
-                    for (int k = curr; k < n; k++) {
-                        if (Math.abs(m[k * n + curr]) > Math.abs(m[max * n + curr])
-                                && Math.abs(m[k * n + curr]) < EPSILON) {
+                int Swaps = 0;
+                for (int e = 0; e < n - 1; e++) {
+                    int max = e;
+                    for (int k = e; k < n; k++) {
+                        if (Math.abs(m[k * n + e]) > Math.abs(m[max * n + e])
+                                && Math.abs(m[k * n + e]) < EPSILON) {
                             max = k;
                         }
                     }
-                    if (max != curr) {
-                        swapLines(m, max, curr);
-                        lineSwaps++;
+                    if (max != e) {
+                        swapLines(m, max, e);
+                        Swaps++;
                     }
-                    for (int i = curr + 1; i < n; i++) {
-                        double coefficient = m[i * n + curr] / m[curr * n + curr];
+                    for (int i = e + 1; i < n; i++) {
+                        double coefficient = m[i * n + e] / m[e * n + e];
                         for (int j = 0; j < n; j++) {
-                            m[i * n + j] -= m[curr * n + j] * coefficient;
+                            m[i * n + j] -= m[e * n + j] * coefficient;
                         }
                     }
                 }
@@ -72,7 +71,7 @@ public class Matrix implements IMatrix { // квадратная матрица 
                 for (int i = 0; i < n; i++) {
                     det *= m[i * n + i];
                 }
-                if (lineSwaps % 2 != 0) {
+                if (Swaps % 2 != 0) {
                     det *= -1;
                 }
             }
