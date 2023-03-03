@@ -1,10 +1,15 @@
+import java.util.ArrayList;
 import java.util.Objects;
-public class Data implements Comparable {
+public class Data extends ArrayList<Data> implements Comparable {
     private final String name;
     private final double value;
     public Data(double value, String name) {
         this.name = name;
         this.value = value;
+    }
+    public Data(Data data) {
+        this.name = data.getName();
+        this.value = data.getValue();
     }
     public String getName() {
         return name;
