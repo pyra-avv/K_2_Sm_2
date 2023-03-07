@@ -1,16 +1,16 @@
 import java.util.Queue;
 
 public class SimpleBuffer implements IBuffer{
-    private Queue<Object> queue;
-    public SimpleBuffer(Queue<Object> queue) {
+    private final Queue<Task> queue;
+    public SimpleBuffer(Queue<Task> queue) {
         this.queue = queue;
     }
     @Override
-    public void set(Object e) {
+    public void set(Task e) {
         queue.offer(e);
     }
     @Override
-    public Object get() {
+    public Task get() {
         return queue.element();
     }
     @Override

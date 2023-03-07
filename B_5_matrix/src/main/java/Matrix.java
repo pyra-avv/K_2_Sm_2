@@ -8,6 +8,7 @@ public class Matrix implements IMatrix { // квадратная матрица 
     private final int n;
     private double det;
     private boolean flag;
+
     public Matrix(int n) {
         if (n < 0) {
             throw new IllegalArgumentException("Некорректный размер матрицы");
@@ -20,9 +21,11 @@ public class Matrix implements IMatrix { // квадратная матрица 
         det = 0;
         flag = true;
     }
+
     public int getN() {
         return n;
     }
+
     @Override
     public double getIJ(int i, int j) {
         if (i < 0 || j < 0 || i >= n || j >= n) {
@@ -30,6 +33,7 @@ public class Matrix implements IMatrix { // квадратная матрица 
         }
         return arr[i * n + j];
     }
+
     @Override
     public void setIJ(double e, int i, int j) {
         if (i < 0 || j < 0 || i >= n || j >= n) {
@@ -38,47 +42,54 @@ public class Matrix implements IMatrix { // квадратная матрица 
         arr[i * n + j] = e;
         flag = false;
     }
+
     @Override
     public double Determinant() { // поиск определителя
-        if (!flag) {
-            if (ZeroLines(arr)) { // если есть нулевая строка
-                det = 0;
-            } else {
-                double[] m = new double[n * n];
-                System.arraycopy(arr, 0, m, 0, n * n);
-                double EPSILON = 10e-9;
-                int Swaps = 0;
-                for (int e = 0; e < n - 1; e++) {
-                    int max = e;
-                    for (int k = e; k < n; k++) {
-                        if (Math.abs(m[k * n + e]) > Math.abs(m[max * n + e])
-                                && Math.abs(m[k * n + e]) < EPSILON) {
-                            max = k;
-                        }
-                    }
-                    if (max != e) {
-                        swapLines(m, max, e);
-                        Swaps++;
-                    }
-                    for (int i = e + 1; i < n; i++) {
-                        double coefficient = m[i * n + e] / m[e * n + e];
-                        for (int j = 0; j < n; j++) {
-                            m[i * n + j] -= m[e * n + j] * coefficient;
-                        }
-                    }
-                }
-                det = 1;
-                for (int i = 0; i < n; i++) {
-                    det *= m[i * n + i];
-                }
-                if (Swaps % 2 != 0) {
-                    det *= -1;
+        if (flag) {
+            return det;
+        }
+        flag = true;
+        double[] m = new double[n * n];
+        System.arraycopy(arr, 0, m, 0, n * n);
+        double EPSILON = 10e-9;
+        int Swaps = 0;
+        for (int e = 0; e < n - 1; e++) {
+            int max = e;
+            for (int k = e; k < n; k++) {
+                if (Math.abs(m[k * n + e]) > Math.abs(m[max * n + e])
+                        && Math.abs(m[k * n + e]) < EPSILON) {
+                    max = k;
                 }
             }
-            flag = true;
+            if (max != e) {
+                swapLines(m, max, e);
+                Swaps++;
+            }
+            if (m[e * n + e] == 0) {
+                det = 0;
+                return det;
+            }
+            for (int i = e + 1; i < n; i++) {
+//                    if (m[e * n + e] == 0) {
+//                        det = 0;
+//                        return det;
+//                    }
+                double coefficient = m[i * n + e] / m[e * n + e];
+                for (int j = 0; j < n; j++) {
+                    m[i * n + j] -= m[e * n + j] * coefficient;
+                }
+            }
+        }
+        det = 1;
+        for (int i = 0; i < n; i++) {
+            det *= m[i * n + i];
+        }
+        if (Swaps % 2 != 0) {
+            det *= -1;
         }
         return det;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -86,22 +97,28 @@ public class Matrix implements IMatrix { // квадратная матрица 
         Matrix matrix = (Matrix) o;
         return Arrays.equals(arr, matrix.arr);
     }
+
     @Override
     public int hashCode() {
         return Arrays.hashCode(arr);
     }
+
     public boolean getFlag() {
         return flag;
     }
+
     public void setFlag(boolean flag) {
         this.flag = flag;
     }
+
     public double getDet() {
         return det;
     }
+
     public void setDet(double det) {
         this.det = det;
     }
+
     // приватные вспомогательные функции для нахождения определителя
     private boolean ZeroLines(double[] m) { // проверка на нулевую строку
         double EPSILON = 10e-9;
@@ -129,6 +146,7 @@ public class Matrix implements IMatrix { // квадратная матрица 
 
         return false;
     }
+
     private void swapLines(double[] m, int i, int j) { // перестановка строк
         for (int k = 0; k < n; k++) {
             double tmp = m[i * n + k];
@@ -136,13 +154,6 @@ public class Matrix implements IMatrix { // квадратная матрица 
             m[j * n + k] = tmp;
         }
     }
-
-
-
-
-
-
-
 
 
 }

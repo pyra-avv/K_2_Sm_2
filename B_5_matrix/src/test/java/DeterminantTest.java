@@ -27,6 +27,14 @@ class DeterminantTest {
         Matrix matrix5 = new Matrix(1);
         matrix5.setIJ(5, 0, 0);
         assertEquals(5, matrix5.Determinant());
+
+        double[] arrT6 = { 1, 2, 3, 2, 4, 6, 3, 6, 9 };
+        Matrix matrix6 = new Matrix(3);
+        for (int i = 0; i < arrT6.length; i++) {
+            matrix6.setIJ(arrT6[i],i / 3,i % 3);
+        }
+        assertEquals(0, matrix6.Determinant(), 1e-9);
+
     }
     @Test
     void diagMatrixTest() {

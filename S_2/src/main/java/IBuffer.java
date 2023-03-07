@@ -1,5 +1,5 @@
 public interface IBuffer { // буфер элементов произвольного типа
-    void set(Object e);
+    void set(Task e);
     Object get();
     int getSize();
     void del();
