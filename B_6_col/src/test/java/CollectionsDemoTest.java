@@ -5,14 +5,12 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CollectionsDemoTest {
-
     @Test
     void firstSymbol() {
         Collection<String> colStr1 = new ArrayList<>(List.of("col", "", "cpp", "asb", "set" ));
         assertEquals(2, CollectionsDemo.FirstSymbol(colStr1, 'c'));
         assertEquals(0, CollectionsDemo.FirstSymbol(colStr1, 'e'));
     }
-
     @Test
     void sameSurnames() {
         List<Human> listHuman1 = new ArrayList<>(List.of(
@@ -30,19 +28,19 @@ class CollectionsDemoTest {
 
     @Test
     void listWithoutOne() {
-        List<Human> listHuman1 = new ArrayList<>(List.of(
+        ArrayList<Human> listHuman1 = new ArrayList<>(List.of(
                 new Human("Иванов", "Иван", "Иваныч",5),
                 new Human("Петров", "Иван", "Иваныч",17),
                 new Human("Бочаров", "Сергей", "Иваныч",10),
                 new Human("Вертихвостов", "Иван", "Иваныч",20),
                 new Human("Иванов", "Сергей", "Иваныч",10)));
         Human human1 = new Human("Бочаров", "Сергей", "Иваныч",10);
-        List<Human> listRes1 = new ArrayList<>(List.of(
+        ArrayList<Human> listRes1 = new ArrayList<>(List.of(
                 new Human("Иванов", "Иван", "Иваныч",5),
                 new Human("Петров", "Иван", "Иваныч",17),
                 new Human("Вертихвостов", "Иван", "Иваныч",20),
                 new Human("Иванов", "Сергей", "Иваныч",10)));
-        List<Human> listRes = CollectionsDemo.ListWithoutOne(listHuman1, human1);
+        ArrayList<Human> listRes = CollectionsDemo.ListWithoutOne(listHuman1, human1);
         assertEquals(listRes1, listRes);
         listHuman1.get(0).setAge(333);
         assertEquals(listRes1, listRes);
@@ -75,12 +73,59 @@ class CollectionsDemoTest {
         Set<Human> setTest1 = new HashSet<>(Set.of(
                 new Human("Иванов", "Иван", "Иваныч",25),
                 new Human("Петров", "Иван", "Иваныч",25),
-                new Student("Ce[jigfkjd", "Иван", "Иваныч",25, "imit")
-        ));
+                new Student("Ce[jigfkjd", "Иван", "Иваныч",25, "imit")));
         assertEquals(setTest1, CollectionsDemo.MaxAge(listHuman1));
     }
     @Test
-    void map() {
+    void display() {
+        Map<Integer, Human> mapHuman1 = mapIntHuman();
+        Set<Integer> setInt1 = new HashSet<>(Set.of(66, 8, 99));
+        Set<Human> resHuman1 = new HashSet<>(Set.of(
+                new Human("Иванов", "Сергей", "Иваныч",10),
+                new Human("Бочаров", "Сергей", "Иваныч",10)));
+        assertEquals(resHuman1, CollectionsDemo.Display(mapHuman1, setInt1));
+        Set<Integer> setInt2 = new HashSet<>(Set.of(66, 88, 87));
+        Set<Human> resHuman2 = new HashSet<>();
+        assertEquals(resHuman2, CollectionsDemo.Display(mapHuman1, setInt2));
+    }
+    @Test
+    void listOfAdults() {
+        Map<Integer, Human> mapHuman1 = mapIntHuman();
+        List<Integer> resInt1 = new ArrayList<>(List.of(5, 6, 77));
+        assertEquals(resInt1, CollectionsDemo.ListOfAdults(mapHuman1));
+    }
+    @Test
+    void toAge() {
+        Map<Integer, Human> mapHuman1 = mapIntHuman();
+        Map<Integer, Integer> mapInt1 = new HashMap<>();
+        for (Map.Entry<Integer, Human> m : mapHuman1.entrySet()) {
+            mapInt1.put(m.getKey(), m.getValue().getAge());
+        }
+        assertEquals(mapInt1, CollectionsDemo.toAge(mapHuman1));
+    }
+    @Test
+    void newMap() {
+        Set<Human> setHuman = new HashSet<>(Set.of(
+                new Human("Иванов", "Иван", "Иваныч",25),
+                new Human("Петров", "Иван", "Иваныч",25),
+                new Human("Бочаров", "Сергей", "Иваныч",10),
+                new Human("Вертихвостов", "Иван", "Иваныч",20),
+                new Human("Иванов", "Сергей", "Иваныч",10)));
+        List<Human> listHuman1 = new ArrayList<>(List.of(
+                new Human("Иванов", "Иван", "Иваныч",25),
+                new Human("Петров", "Иван", "Иваныч",25)));
+        List<Human> listHuman2 = new ArrayList<>(List.of(
+                new Human("Бочаров", "Сергей", "Иваныч",10),
+                new Human("Иванов", "Сергей", "Иваныч",10)));
+        List<Human> listHuman3 = new ArrayList<>(List.of(
+                new Human("Вертихвостов", "Иван", "Иваныч",20)));
+        Map<Integer, List<Human>> mapRes = new HashMap<>();
+        mapRes.put(25, listHuman1);
+        mapRes.put(10, listHuman2);
+        mapRes.put(20, listHuman3);
+        assertEquals(mapRes, CollectionsDemo.NewMap(setHuman));
+    }
+    Map<Integer, Human> mapIntHuman() {
         List<Human> listHuman1 = new ArrayList<>(List.of(
                 new Human("Иванов", "Иван", "Иваныч",25),
                 new Human("Петров", "Иван", "Иваныч",25),
@@ -94,29 +139,6 @@ class CollectionsDemoTest {
             mapHuman1.put(arrInt1[k], human);
             k++;
         }
-
-        Set<Integer> setInt1 = new HashSet<>(Set.of(66, 8, 99));
-        Set<Human> resHuman1 = new HashSet<>(Set.of(
-                new Human("Иванов", "Сергей", "Иваныч",10),
-                new Human("Бочаров", "Сергей", "Иваныч",10)));
-        assertEquals(resHuman1, CollectionsDemo.Display(mapHuman1, setInt1));
-        Set<Integer> setInt2 = new HashSet<>(Set.of(66, 88, 87));
-        Set<Human> resHuman2 = new HashSet<>();
-        assertEquals(resHuman2, CollectionsDemo.Display(mapHuman1, setInt2));
-
-        List<Integer> resInt1 = new ArrayList<>(List.of(5, 6, 77));
-        assertEquals(resInt1, CollectionsDemo.ListOfAdults(mapHuman1));
-
-        Map<Integer, Integer> mapInt1 = new HashMap<>();
-        k = 0;
-        for (Human human : listHuman1) {
-            mapInt1.put(arrInt1[k], human.getAge());
-            k++;
-        }
-        assertEquals(mapInt1, CollectionsDemo.toAge(mapHuman1));
-
-
-
-
+        return mapHuman1;
     }
 }

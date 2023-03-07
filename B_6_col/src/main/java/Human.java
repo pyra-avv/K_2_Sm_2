@@ -54,4 +54,8 @@ public class Human {
     public int hashCode() {
         return Objects.hash(surname, name, patronymic, age);
     }
+    @Override
+    public String toString() {
+        return  surname + " " + name + " " + " " + patronymic + "age: " + age;
+    }
 }
