@@ -4,9 +4,9 @@ public class SimpleTaskProcessor implements ITaskProcessor {
         this.buffer = buffer;
     }
     @Override
-    public int process() {
+    public Integer process() {
         if (!buffer.noNull()) {
-            return Integer.parseInt(null);
+            return null;
         }
         int[] task = buffer.get().getData();
         int res = 0;

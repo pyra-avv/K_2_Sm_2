@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class SimpleTaskGenerator implements ITaskGenerator {
     private final SimpleBuffer buffer;
     private int startValue;
@@ -12,7 +10,7 @@ public class SimpleTaskGenerator implements ITaskGenerator {
     }
     @Override
     public void generate() {
-        int n = amount - startValue;
+        int n = amount;
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
             arr[i] = startValue + i;
@@ -20,12 +18,12 @@ public class SimpleTaskGenerator implements ITaskGenerator {
         Task task = new Task(arr);
         buffer.set(task);
     }
-    public int withStartValue(int startValue) {
+    public SimpleTaskGenerator withStartValue(int startValue) {
         this.startValue = startValue;
-        return startValue;
+        return this;
     }
-    public int withAmount(int amount) {
+    public SimpleTaskGenerator withAmount(int amount) {
         this.amount = amount;
-        return amount;
+        return this;
     }
 }
