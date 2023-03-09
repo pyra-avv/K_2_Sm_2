@@ -25,7 +25,6 @@ class CollectionsDemoTest {
                 new Human("Иванов", "Сергей", "Иваныч",10)));
         assertEquals(listRes, CollectionsDemo.SameSurnames(listHuman1,  human1));
     }
-
     @Test
     void listWithoutOne() {
         ArrayList<Human> listHuman1 = new ArrayList<>(List.of(
@@ -45,7 +44,6 @@ class CollectionsDemoTest {
         listHuman1.get(0).setAge(333);
         assertEquals(listRes1, listRes);
     }
-
     @Test
     void notIntersect() {
         Set<Integer> setInt1 = new HashSet<>(Set.of(5, 8, 77, 16));

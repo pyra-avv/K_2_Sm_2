@@ -15,6 +15,13 @@ public class Human {
             this.age = age;
         }
     }
+    public Human(Human human) {
+        this.surname = human.getSurname();
+        this.name = human.getName();
+        this.patronymic = human.getPatronymic();
+        this.age = human.getAge();
+    }
+
     public int getAge() {
         return age;
     }

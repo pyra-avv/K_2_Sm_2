@@ -39,7 +39,10 @@ public class CollectionsDemo {
      * При изменении элементов входного списка элементы выходного изменяться не должны
      */
     public static ArrayList<Human> ListWithoutOne(ArrayList<Human> listHuman, Human one) {
-        ArrayList<Human> res = new ArrayList<>(listHuman);
+        ArrayList<Human> res = new ArrayList<>();
+        for (Human human : listHuman) {
+            res.add(new Human(human));
+        }
         res.remove(one);
         return res;
     }
