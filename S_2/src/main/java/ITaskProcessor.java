@@ -1,3 +1,3 @@
 public interface ITaskProcessor {
-    int process(Task task);
+    int process();
 }
