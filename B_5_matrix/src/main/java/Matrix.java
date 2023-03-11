@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 
 public class Matrix implements IMatrix { // квадратная матрица произвольного вида
-    private double[] arr;
+    private final double[] arr;
     private final int n;
     private double det;
     private boolean flag;
@@ -70,10 +70,6 @@ public class Matrix implements IMatrix { // квадратная матрица 
                 return det;
             }
             for (int i = e + 1; i < n; i++) {
-//                    if (m[e * n + e] == 0) {
-//                        det = 0;
-//                        return det;
-//                    }
                 double coefficient = m[i * n + e] / m[e * n + e];
                 for (int j = 0; j < n; j++) {
                     m[i * n + j] -= m[e * n + j] * coefficient;
@@ -120,33 +116,6 @@ public class Matrix implements IMatrix { // квадратная матрица 
     }
 
     // приватные вспомогательные функции для нахождения определителя
-    private boolean ZeroLines(double[] m) { // проверка на нулевую строку
-        double EPSILON = 10e-9;
-        for (int i = 0; i < n; i++) {
-            boolean flagO = Math.abs(m[i * n]) < EPSILON;
-            int j = -1;
-            while (++j < n) {
-                flagO &= Math.abs(m[i * n + j]) < EPSILON;
-            }
-            if (flagO) {
-                return true;
-            }
-        }
-
-        for (int i = 0; i < n; i++) {
-            boolean flagO = Math.abs(m[i]) < EPSILON;
-            int j = -1;
-            while (++j < n) {
-                flagO &= Math.abs(m[j * n + i]) < EPSILON;
-            }
-            if (flagO) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     private void swapLines(double[] m, int i, int j) { // перестановка строк
         for (int k = 0; k < n; k++) {
             double tmp = m[i * n + k];

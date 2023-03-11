@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class DiagMatrix extends UpTriangleMatrix implements IMatrix { // диагональная матрица
     public DiagMatrix(int n) {
         super(n);

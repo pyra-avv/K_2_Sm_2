@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class UpTriangleMatrix extends Matrix implements IMatrix { // верхнетреугольная матрица
     public UpTriangleMatrix(int n) {
         super(n);
