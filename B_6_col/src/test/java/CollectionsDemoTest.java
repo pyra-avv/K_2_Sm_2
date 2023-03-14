@@ -121,7 +121,12 @@ class CollectionsDemoTest {
         mapRes.put(25, listHuman1);
         mapRes.put(10, listHuman2);
         mapRes.put(20, listHuman3);
-        assertEquals(mapRes, CollectionsDemo.NewMap(setHuman));
+        Map<Integer, List<Human>> mapTest = CollectionsDemo.NewMap(setHuman);
+        assertEquals(3, mapTest.size());
+        Collections.sort(mapTest.get(25));
+        Collections.sort(mapTest.get(10));
+        Collections.sort(mapTest.get(20));
+        assertEquals(mapRes, mapTest);
     }
     Map<Integer, Human> mapIntHuman() {
         List<Human> listHuman1 = new ArrayList<>(List.of(

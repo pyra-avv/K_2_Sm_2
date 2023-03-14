@@ -20,7 +20,7 @@ class SimpleBufferTest {
         Task task2 = new Task(595, 926, 65);
         buffer1.set(task2);
         assertEquals(task1, buffer1.get());
-        buffer1.del();;
+        buffer1.del();
         assertFalse(buffer1.noNull());
     }
 }
