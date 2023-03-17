@@ -71,11 +71,19 @@ public class Reference {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reference reference = (Reference) o;
-        return Objects.equals(student, reference.student) && Objects.equals(start, reference.start) && Objects.equals(end, reference.end) && Objects.equals(table, reference.table);
+        return Objects.equals(student, reference.student) && Objects.equals(start, reference.start)
+                && Objects.equals(end, reference.end) && Objects.equals(table, reference.table);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(student, start, end, table);
+    }
+
+    @Override
+    public String toString() {
+        return student.getSurname() + " " + student.getName() + " " + student.getPatronymic() + "\n"
+                + student.getUniversity() + " " + student.getFaculty() + " " + student.getSpeciality() + "\n"
+                + "Поступлени: " + start + "Выпуск: " + end + "\n" + table;
     }
 }

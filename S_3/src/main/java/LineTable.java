@@ -37,7 +37,7 @@ public class LineTable {
 
     @Override
     public String toString() {
-        return "Название дисциплины: " + Discipline + "; трудоёмкость: " + LaborIntensity + "; оценка: " + Grade + "\n";
+        return "Название дисциплины: " + Discipline + "; кол_во часов: " + LaborIntensity + "; оценка: " + Grade + "\n";
     }
 
     @Override
