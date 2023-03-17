@@ -7,7 +7,7 @@ public class Service {
      * @param reference справка
      * @return список названий изученных дисциплин.
      */
-    public Collection<String> ListDisciplines(Reference reference) {
+    public static Collection<String> ListDisciplines(Reference reference) {
         Collection<String> res = new ArrayList<>();
         for (LineTable line : reference.getTable()) {
             res.add(line.getDiscipline());
@@ -20,7 +20,7 @@ public class Service {
      * @param reference справка
      * @return сумма часов по всем дисциплинам
      */
-    public int GeneralLaborIntensity(Reference reference) {
+    public static int GeneralLaborIntensity(Reference reference) {
         int res = 0;
         for (LineTable line : reference.getTable()) {
             res += line.getLaborIntensity();
@@ -33,11 +33,11 @@ public class Service {
      * @param reference справка
      * @return средний балл оценок
      */
-    public int AverageScore(Reference reference) {
+    public static int AverageScore(Reference reference) {
         int res = 0;
         int k = 0;
         for (LineTable line : reference.getTable()) {
-            if (line.getGrade().get() != 2) {
+            if (line.getGrade().get() > 2) {
                 res += line.getGrade().get();
                 k++;
             }
@@ -50,7 +50,7 @@ public class Service {
      * @param reference справка
      * @return отображение названий дисциплин в оценки
      */
-    public Map<String, String> DisciplineGrade(Reference reference) {
+    public static Map<String, String> DisciplineGrade(Reference reference) {
         Map<String, String> res = new HashMap<>();
         for (LineTable line : reference.getTable()) {
             res.put(line.getDiscipline(), line.getGrade().toString());
@@ -63,7 +63,7 @@ public class Service {
      * @param reference справка
      * @return отображение оценки в список дисциплин, которые сданы на эту оценку
      */
-    public Map<String, List<String>> GradeDiscipline(Reference reference) {
+    public static Map<String, List<String>> GradeDiscipline(Reference reference) {
         Map<String, List<String>> res = new HashMap<>();
         for (LineTable line : reference.getTable()) {
             if (res.containsKey(line.getGrade().toString())) {
