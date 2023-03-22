@@ -1,14 +1,16 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class FileDemo {
     /**
      * 1 запись
-     *
      * @param arr массив
      * @return двоичный поток с массивом
      */
-    public static ByteArrayOutputStream RecordingB(int[] arr) {
-        ByteArrayOutputStream res = new ByteArrayOutputStream();
+    public static OutputStream RecordingB(int[] arr) throws IOException {
+        OutputStream res = new ByteArrayOutputStream();
         res.write(arr.length);
         for (int i : arr) {
             res.write(i);
@@ -21,7 +23,7 @@ public class FileDemo {
      * @param read двоичный поток с массивом
      * @return массив
      */
-    public static int[] ReadingB(ByteArrayInputStream read) {
+    public static int[] ReadingB(InputStream read) throws IOException {
         int[] arr = new int[read.read()];
         for (int i = 0; i < arr.length; i++) {
             arr[i] = read.read();
@@ -34,8 +36,8 @@ public class FileDemo {
      * @param arr массив
      * @return символьны поток с массивом
      */
-    public static CharArrayWriter RecordingS(int[] arr) {
-        CharArrayWriter res = new CharArrayWriter();
+    public static Writer RecordingS(int[] arr) throws IOException {
+        Writer res = new CharArrayWriter();
         res.write(arr.length);
         for (int j : arr) {
             res.write(' ');
@@ -50,7 +52,7 @@ public class FileDemo {
      * @return массив
      * @throws IOException чтоб читалось
      */
-    public static int[] ReadingS(CharArrayReader read) throws IOException {
+    public static int[] ReadingS(Reader read) throws IOException {
         int[] arr = new int[read.read()];
         for (int i = 0; i < arr.length; i++) {
             //read.read();
@@ -58,6 +60,26 @@ public class FileDemo {
         }
         return arr;
     }
+
+    /**
+     * 4
+     * @param directory каталог
+     * @param ext расшиение (в виде ".расширение"
+     * @return список файлоф с данным расширением
+     */
+    public static List<File> ListOfExtensions(File directory, String ext) {
+        if (!directory.isDirectory()) {
+            throw new IllegalArgumentException();
+        }
+        List<File> res = new ArrayList<>();
+        for (File f : Objects.requireNonNull(directory.listFiles())) {
+            if (f.getName().endsWith(ext)) {
+                res.add(f);
+            }
+        }
+        return res;
+    }
+
 
 
 
