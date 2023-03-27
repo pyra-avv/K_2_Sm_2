@@ -1,7 +1,7 @@
 import java.util.Objects;
 
 public class Grade {
-    private int grade;
+    private final int grade;
 
     public Grade(int grade) {
         if (grade < 0 || grade > 5) {
@@ -11,12 +11,6 @@ public class Grade {
     }
     public int get() {
         return grade;
-    }
-    public void set(int grade) {
-        if (grade != 5 && grade != 4 && grade != 3 && grade != 2) {
-            throw new NullPointerException("Некорректная оценка");
-        }
-        this.grade = grade;
     }
     @Override
     public String toString() {

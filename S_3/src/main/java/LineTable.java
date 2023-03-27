@@ -1,9 +1,9 @@
 import java.util.Objects;
 
 public class LineTable {
-    private String Discipline;
-    private int LaborIntensity;
-    private Grade Grade;
+    private final String Discipline;
+    private final int LaborIntensity;
+    private final Grade Grade;
 
     public LineTable(String Discipline, int LaborIntensity, int Grade) {
         this.Grade = new Grade(Grade);
@@ -15,24 +15,12 @@ public class LineTable {
         return Grade;
     }
 
-    public void setGrade(int grade) {
-        this.Grade = new Grade(grade);
-    }
-
     public int getLaborIntensity() {
         return LaborIntensity;
     }
 
-    public void setLaborIntensity(int laborIntensity) {
-        LaborIntensity = laborIntensity;
-    }
-
     public String getDiscipline() {
         return Discipline;
-    }
-
-    public void setDiscipline(String discipline) {
-        Discipline = discipline;
     }
 
     @Override

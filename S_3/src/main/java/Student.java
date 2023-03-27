@@ -1,9 +1,9 @@
 import java.util.Objects;
 
 public class Student extends Human {
-    private String faculty;
-    private String university;
-    private String speciality;
+    private final String faculty;
+    private final String university;
+    private final String speciality;
     public Student(String surname, String name, String patronymic,
                    String faculty, String university, String speciality) {
         super(surname, name,  patronymic);
@@ -16,23 +16,12 @@ public class Student extends Human {
         return university;
     }
 
-    public void setUniversity(String university) {
-        this.university = university;
-    }
-
     public String getSpeciality() {
         return speciality;
     }
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
-    }
-
     public String getFaculty() {
         return faculty;
-    }
-    public void setFaculty(String faculty) {
-        this.faculty = faculty;
     }
 
     @Override
