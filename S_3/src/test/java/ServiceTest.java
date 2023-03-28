@@ -12,7 +12,6 @@ class ServiceTest {
         Assertions.assertEquals(ret1, Service.ListDisciplines(reference1()));
         Assertions.assertEquals(ret2, Service.ListDisciplines(reference2()));
     }
-
     @org.junit.jupiter.api.Test
     void generalLaborIntensity() {
         Assertions.assertEquals(68, Service.GeneralLaborIntensity(reference1()));
