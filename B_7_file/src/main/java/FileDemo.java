@@ -7,65 +7,69 @@ public class FileDemo {
     /**
      * 1 запись
      * @param arr массив
-     * @return двоичный поток с массивом
+     * @param stream байтовый поток для записи
      */
-    public static OutputStream RecordingB(int[] arr) throws IOException {
-        OutputStream res = new ByteArrayOutputStream();
-        res.write(arr.length);
+    public static void RecordingB(int[] arr, OutputStream stream) throws IOException {
         for (int i : arr) {
-            res.write(i);
+            stream.write(i);
         }
-        return res;
     }
 
     /**
      * 1 чтение
      * @param read двоичный поток с массивом
-     * @return массив
+     * @param arr массив
      */
-    public static int[] ReadingB(InputStream read) throws IOException {
-        int[] arr = new int[read.read()];
+    public static void ReadingB(InputStream read, int[] arr) throws IOException {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = read.read();
         }
-        return arr;
     }
 
     /**
      * 2 запись
      * @param arr массив
-     * @return символьны поток с массивом
+     * @param writer символьны поток для записи
      */
-    public static Writer RecordingS(int[] arr) throws IOException {
-        Writer res = new CharArrayWriter();
-        res.write(arr.length);
+    public static void RecordingS(int[] arr, Writer writer) throws IOException {
         for (int j : arr) {
-            res.write(' ');
-            res.write(j);
+            writer.write(j);
+            writer.write(' ');
         }
-        return res;
     }
 
     /**
      * 2 чтение
      * @param read символьны поток с массивом
-     * @return массив
+     * @param arr массив
      * @throws IOException чтоб читалось
      */
-    public static int[] ReadingS(Reader read) throws IOException {
-        int[] arr = new int[read.read()];
+    public static void ReadingS(Reader read, int[] arr) throws IOException {
         for (int i = 0; i < arr.length; i++) {
-            //read.read();
+            arr[i] = read.read();
+            read.read();
+        }
+    }
+
+    /**
+     * 3
+     * @param read файл для чтения
+     * @param arr массив
+     * @param x с этого места читать
+     * @throws IOException чтоб читалось
+     */
+    public static void ReadingFromAGivenLocation(RandomAccessFile read, int[] arr, int x) throws IOException {
+        read.seek(x);
+        for (int i = 0; i < arr.length; i++) {
             arr[i] = read.read();
         }
-        return arr;
     }
 
     /**
      * 4
      * @param directory каталог
-     * @param ext расшиение (в виде ".расширение"
-     * @return список файлоф с данным расширением
+     * @param ext расшиение (в виде ".расширение")
+     * @return список файлов с данным расширением
      */
     public static List<File> ListOfExtensions(File directory, String ext) {
         if (!directory.isDirectory()) {
