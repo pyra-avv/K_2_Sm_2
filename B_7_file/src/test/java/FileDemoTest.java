@@ -1,7 +1,8 @@
 import org.junit.jupiter.api.Test;
-//import java.lang.AutoCloseable;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,14 +49,10 @@ class FileDemoTest {
 
     @Test
     void listOfExtensions() {
-//        try(File directory1 = new File("..\\tmp")){
-//
-//        }
-
-
-
-
-
-
+        File directory1 = new File("C:\\Users\\yura6\\INFORMAT_JaVa\\tmp");
+        List<File> list1 = new ArrayList<>(List.of(new File("C:\\Users\\yura6\\INFORMAT_JaVa\\tmp\\t1.txt"),
+                new File("C:\\Users\\yura6\\INFORMAT_JaVa\\tmp\\t2.txt"),
+                new File("C:\\Users\\yura6\\INFORMAT_JaVa\\tmp\\t5.txt")));
+        assertEquals(list1, FileDemo.ListOfExtensions(directory1, ".txt"));
     }
 }
