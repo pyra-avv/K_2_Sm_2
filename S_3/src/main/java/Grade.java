@@ -9,27 +9,13 @@ public class Grade {
         }
         this.grade = grade;
     }
-    public int get() {
+    public int getGrade() {
         return grade;
     }
     @Override
     public String toString() {
-        if (grade == 5) {
-            return "Отлично";
-        }
-        if (grade == 4) {
-            return "Хорошо";
-        }
-        if (grade == 3) {
-            return "Удовлетворительно";
-        }
-        if (grade == 1) {
-            return "Зачтено";
-        }
-        if (grade == 0) {
-            return "Незачтено";
-        }
-        return "Неудовлетворительно";
+        String[] arrG = { "Незачтено", "Зачтено", "Неудовлетворительно", "Удовлетворительно", "Хорошо", "Отлично" };
+        return arrG[grade];
     }
 
     @Override

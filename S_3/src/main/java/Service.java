@@ -37,8 +37,8 @@ public class Service {
         int res = 0;
         int k = 0;
         for (LineTable line : reference.getTable()) {
-            if (line.getGrade().get() > 2) {
-                res += line.getGrade().get();
+            if (line.getGrade().getGrade() > 2) {
+                res += line.getGrade().getGrade();
                 k++;
             }
         }
