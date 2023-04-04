@@ -11,12 +11,10 @@ class ServisSerializableTest {
         Person person1 = new Person("Иванова", "Глюка", "Андреевна",
                 new Data(1, 12, 2000));
         try(FileOutputStream file1 = new FileOutputStream("person.ser")) {
-            ObjectOutputStream stream1 = new ObjectOutputStream(file1);
-            ServisSerializable.writePerson(stream1, person1);
+            ServisSerializable.writePerson(file1, person1);
         }
         try(FileInputStream file2 = new FileInputStream("person.ser")) {
-            ObjectInputStream stream2 = new ObjectInputStream(file2);
-            Person person2 = ServisSerializable.readPerson(stream2);
+            Person person2 = ServisSerializable.readPerson(file2);
             assertEquals(person1, person2);
         }
     }
@@ -28,12 +26,10 @@ class ServisSerializableTest {
                 new Person("Иванов", "Шизоид", "Парфентич",
                     new Data(2, 6, 1999)));
         try(FileOutputStream file1 = new FileOutputStream("flat.ser")) {
-            ObjectOutputStream stream1 = new ObjectOutputStream(file1);
-            ServisSerializable.writeFlat(stream1, flat1);
+            ServisSerializable.writeFlat(file1, flat1);
         }
         try(FileInputStream file2 = new FileInputStream("flat.ser")) {
-            ObjectInputStream stream2 = new ObjectInputStream(file2);
-            Flat flat2 = ServisSerializable.readFlat(stream2);
+            Flat flat2 = ServisSerializable.readFlat(file2);
             assertEquals(flat1, flat2);
         }
     }
@@ -48,12 +44,10 @@ class ServisSerializableTest {
                         new Person("Иванов", "Шизоид", "Парфентич",
                             new Data(2, 3, 1999))));
         try(FileOutputStream file1 = new FileOutputStream("house.ser")) {
-            ObjectOutputStream stream1 = new ObjectOutputStream(file1);
-            ServisSerializable.writeHouse(stream1, house1);
+            ServisSerializable.writeHouse(file1, house1);
         }
         try(FileInputStream file2 = new FileInputStream("house.ser")) {
-            ObjectInputStream stream2 = new ObjectInputStream(file2);
-            House house2 = ServisSerializable.readHouse(stream2);
+            House house2 = ServisSerializable.readHouse(file2);
             assertEquals(house1, house2);
         }
     }

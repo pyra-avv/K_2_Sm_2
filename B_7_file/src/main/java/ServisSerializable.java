@@ -1,30 +1,34 @@
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 public class ServisSerializable {
 
-    public static void writePerson(ObjectOutputStream stream, Person person) throws IOException {
+    public static void writePerson(OutputStream s, Person person) throws IOException {
+        ObjectOutputStream stream = new ObjectOutputStream(s);
         stream.writeObject(person);
     }
 
-    public static void writeHouse(ObjectOutputStream stream, House house) throws IOException {
+    public static void writeHouse(OutputStream s, House house) throws IOException {
+        ObjectOutputStream stream = new ObjectOutputStream(s);
         stream.writeObject(house);
     }
 
-    public static void writeFlat(ObjectOutputStream stream, Flat flat) throws IOException {
+    public static void writeFlat(OutputStream s, Flat flat) throws IOException {
+        ObjectOutputStream stream = new ObjectOutputStream(s);
         stream.writeObject(flat);
     }
 
-    public static Person readPerson(ObjectInputStream stream) throws ClassNotFoundException, IOException {
+    public static Person readPerson(InputStream s) throws ClassNotFoundException, IOException {
+        ObjectInputStream stream = new ObjectInputStream(s);
         return (Person) stream.readObject();
     }
 
-    public static House readHouse(ObjectInputStream stream) throws ClassNotFoundException, IOException {
+    public static House readHouse(InputStream s) throws ClassNotFoundException, IOException {
+        ObjectInputStream stream = new ObjectInputStream(s);
         return (House) stream.readObject();
     }
 
-    public static Flat readFlat(ObjectInputStream stream) throws ClassNotFoundException, IOException {
+    public static Flat readFlat(InputStream s) throws ClassNotFoundException, IOException {
+        ObjectInputStream stream = new ObjectInputStream(s);
         return (Flat) stream.readObject();
     }
 }

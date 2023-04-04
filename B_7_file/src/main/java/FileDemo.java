@@ -3,16 +3,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Задачи:
+ * добавить try
+ * решить вопрос с байтами и символами
+ * сделать нормальный тест поиска пот каталогам
+ */
 public class FileDemo {
+
     /**
      * 1 запись
      * @param arr массив
      * @param stream байтовый поток для записи
      */
     public static void RecordingB(int[] arr, OutputStream stream) throws IOException {
-        for (int i : arr) {
-            stream.write(i);
+        byte[] arrB = new byte[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            arrB[i] = (byte) arr[i];
         }
+        stream.write(arrB);
     }
 
     /**
@@ -83,10 +92,4 @@ public class FileDemo {
         }
         return res;
     }
-
-
-
-
-
-
 }

@@ -1,6 +1,9 @@
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@JsonAutoDetect
 public class Data implements Serializable {
     private int dey;
     private String month;
