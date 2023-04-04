@@ -10,10 +10,10 @@ class ServisSerializableTest {
     void Person() throws ClassNotFoundException, IOException  {
         Person person1 = new Person("Иванова", "Глюка", "Андреевна",
                 new Data(1, 12, 2000));
-        try(FileOutputStream file1 = new FileOutputStream("person.ser")) {
+        try(FileOutputStream file1 = new FileOutputStream("person.txt")) {
             ServisSerializable.writePerson(file1, person1);
         }
-        try(FileInputStream file2 = new FileInputStream("person.ser")) {
+        try(FileInputStream file2 = new FileInputStream("person.txt")) {
             Person person2 = ServisSerializable.readPerson(file2);
             assertEquals(person1, person2);
         }
@@ -25,10 +25,10 @@ class ServisSerializableTest {
                 new Data(1, 12, 2000)),
                 new Person("Иванов", "Шизоид", "Парфентич",
                     new Data(2, 6, 1999)));
-        try(FileOutputStream file1 = new FileOutputStream("flat.ser")) {
+        try(FileOutputStream file1 = new FileOutputStream("flat.txt")) {
             ServisSerializable.writeFlat(file1, flat1);
         }
-        try(FileInputStream file2 = new FileInputStream("flat.ser")) {
+        try(FileInputStream file2 = new FileInputStream("flat.txt")) {
             Flat flat2 = ServisSerializable.readFlat(file2);
             assertEquals(flat1, flat2);
         }
@@ -43,10 +43,10 @@ class ServisSerializableTest {
                         new Data(1, 12, 2000)),
                         new Person("Иванов", "Шизоид", "Парфентич",
                             new Data(2, 3, 1999))));
-        try(FileOutputStream file1 = new FileOutputStream("house.ser")) {
+        try(FileOutputStream file1 = new FileOutputStream("house.txt")) {
             ServisSerializable.writeHouse(file1, house1);
         }
-        try(FileInputStream file2 = new FileInputStream("house.ser")) {
+        try(FileInputStream file2 = new FileInputStream("house.txt")) {
             House house2 = ServisSerializable.readHouse(file2);
             assertEquals(house1, house2);
         }

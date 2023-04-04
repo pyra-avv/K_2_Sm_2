@@ -42,21 +42,6 @@ public class Data implements Serializable {
         return Objects.hash(dey, month, year);
     }
 
-    /*public boolean DataData(Data x) {
-            if (year != x.year) {
-                if ((year - x.year == 1) && (dey == 1) && (x.dey == 31) && (month.equals("январь")) &&
-                        (x.month.equals("декабрь"))) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else if (!x.month.equals(month)) {
-                if (mont)
-
-            } else {
-
-            }
-        }*/
     public void setDey(int dey) {
         if (dey <= 0 || dey > 31) {
             this.dey = 1;
@@ -81,7 +66,7 @@ public class Data implements Serializable {
     }
     public void setYear(int year) {
         if (year < 1970) {
-            this.year = 1970;
+            this.year = 1971;
         } else {
             this.year = year;
         }
