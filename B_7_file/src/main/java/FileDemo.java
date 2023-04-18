@@ -3,12 +3,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Задачи:
- * сделать нормальный тест поиска пот каталогам
- */
 public class FileDemo {
 
+    /**
+     * 1 запись
+     * @param arr массив
+     * @param stream двоичный поток с для записи
+     * @throws IOException чтоб
+     */
     public static void RecordingB(int[] arr, OutputStream stream) throws IOException {
         try(DataOutputStream dataOutputStream = new DataOutputStream(stream)) {
             for (int i : arr) {
