@@ -9,11 +9,6 @@ import java.util.Objects;
  */
 public class FileDemo {
 
-    /**
-     * 1 запись
-     * @param arr массив
-     * @param stream байтовый поток для записи
-     */
     public static void RecordingB(int[] arr, OutputStream stream) throws IOException {
         try(DataOutputStream dataOutputStream = new DataOutputStream(stream)) {
             for (int i : arr) {

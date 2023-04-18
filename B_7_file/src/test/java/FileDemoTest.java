@@ -50,7 +50,6 @@ class FileDemoTest {
     @Test
     void listOfExtensions() throws IOException, URISyntaxException {
         File directory1 = new File("src/test/resources/tmp");
-        //System.out.println("dir " + directory1.exists());
         List<File> list1 = new ArrayList<>(List.of(new File(directory1, "t1.txt"),
                 new File(directory1, "t2.txt"), new File(directory1, "t5.txt")));
         assertEquals(list1, FileDemo.ListOfExtensions(directory1, ".txt"));
