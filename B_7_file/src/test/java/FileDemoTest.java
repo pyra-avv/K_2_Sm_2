@@ -1,7 +1,8 @@
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.nio.charset.Charset;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,20 +48,11 @@ class FileDemoTest {
     }
 
     @Test
-    void listOfExtensions() throws IOException {
-        File directory1 = new File("...\\tmp");
-//        List<File> list1 = new ArrayList<>(List.of(new File("C:\\Users\\yura6\\INFORMAT_JaVa\\tmp\\t1.txt"),
-//                new File("C:\\Users\\yura6\\INFORMAT_JaVa\\tmp\\t2.txt"),
-//                new File("C:\\Users\\yura6\\INFORMAT_JaVa\\tmp\\t5.txt")));
-//        assertEquals(list1, FileDemo.ListOfExtensions(directory1, ".txt"));
-//        File directory1 = new File("..\\tmp");
-//        File file1 = new File(directory1, "t1.txt");
-//            File file2 = new FileReader(directory1, Charset.lookupViaProviders("t2.pdf"));
-//            File file3 = new FileReader(directory1, "t3.txt");
-//            File file4 = new FileReader(directory1, "t4.jpg");
-//            File file5 = new FileReader(directory1, "t5.txt"));
-//            List<File> list1 = new ArrayList<>(List.of(file1, file3, file5));
-//            assertEquals(list1, FileDemo.ListOfExtensions(directory1, ".txt"));
-
+    void listOfExtensions() throws IOException, URISyntaxException {
+        File directory1 = new File("src/test/resources/tmp");
+        //System.out.println("dir " + directory1.exists());
+        List<File> list1 = new ArrayList<>(List.of(new File(directory1, "t1.txt"),
+                new File(directory1, "t2.txt"), new File(directory1, "t5.txt")));
+        assertEquals(list1, FileDemo.ListOfExtensions(directory1, ".txt"));
     }
 }

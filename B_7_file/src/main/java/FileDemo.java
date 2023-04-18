@@ -59,9 +59,9 @@ public class FileDemo {
      */
     public static void ReadingS(Reader read, int[] arr) throws IOException {
         try (var stringReader = new BufferedReader(read)) {
-            String[] strArr = stringReader.readLine().split(" ");
+            String[] sArr = stringReader.readLine().split(" ");
             for (int i = 0; i < arr.length; i++) {
-                arr[i] = Integer.parseInt(strArr[i]);
+                arr[i] = Integer.parseInt(sArr[i]);
             }
         }
     }
