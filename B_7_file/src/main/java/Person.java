@@ -58,7 +58,6 @@ public class Person implements Serializable {
         Person person = (Person) o;
         return Objects.equals(surname, person.surname) && Objects.equals(name, person.name) && Objects.equals(patronymic, person.patronymic) && Objects.equals(birthday, person.birthday);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(surname, name, patronymic, birthday);
