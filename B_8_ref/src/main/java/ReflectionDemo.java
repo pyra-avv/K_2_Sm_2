@@ -57,24 +57,19 @@ public class ReflectionDemo {
     public static int ImplementsAnExecutable(List<Object> list) {
         int res = 0;
         for (Object o : list) {
-            boolean f1 = false, f2 = false;
             Class<?>[] oInter = o.getClass().getInterfaces();
             for (Class<?> inter : oInter) {
                 if (inter == Executable.class) {
-                    f1 = true;
+                    List<String> oMethods = MethodList(o);
+                    for (String method : oMethods) {
+                        if (method.equals("public void " + o.getClass().toString().replace("class ", "") +
+                                ".execute()")) {
+                            res++;
+                            break;
+                        }
+                    }
                     break;
                 }
-            }
-            List<String> oMethods = MethodList(o);
-            for (String method : oMethods) {
-                if (method.equals("public void " + o.getClass().toString().replace("class ", "") +
-                        ".execute()")) {
-                    f2 = true;
-                    break;
-                }
-            }
-            if (f1 && f2) {
-                res++;
             }
         }
         return res;
