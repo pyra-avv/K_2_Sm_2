@@ -1,8 +1,6 @@
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +46,7 @@ class FileDemoTest {
     }
 
     @Test
-    void listOfExtensions() throws IOException, URISyntaxException {
+    void listOfExtensions() {
         File directory1 = new File("src/test/resources/tmp");
         List<File> list1 = new ArrayList<>(List.of(new File(directory1, "t1.txt"),
                 new File(directory1, "t2.txt"), new File(directory1, "t5.txt")));
