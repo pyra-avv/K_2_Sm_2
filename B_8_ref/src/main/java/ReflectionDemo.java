@@ -57,27 +57,31 @@ public class ReflectionDemo {
     public static int ImplementsAnExecutable(List<Object> list) {
         int res = 0;
         for (Object o : list) {
-            Class<?>[] oInter = o.getClass().getInterfaces();
-            for (Class<?> inter : oInter) {
-                if (inter == Executable.class) {
-                    List<String> oMethods = MethodList(o);
-                    for (String method : oMethods) {
-                        if (method.equals("public void " + o.getClass().toString().replace("class ", "") +
-                                ".execute()")) {
-                            res++;
-                            break;
-                        }
-                    }
-                    break;
-                }
+            if (Executable.class.isAssignableFrom(o.getClass())) {
+                ((Executable) o).execute();
+                res++;
             }
         }
         return res;
     }
 
-
-
-
-
-
+    /**
+     * 5*
+     * @param o объект
+     * @return список его геттеров и сеттеров
+     */
+    public static List<String> getSetAndGet(Object o) {
+        List<String> res = new ArrayList<>();
+        for (String method : MethodList(o)) {
+            String[] wordsMethod = method.split(" ");
+            if (wordsMethod[0].equals("public") && (!wordsMethod[1].equals("void") &&
+                    wordsMethod[2].startsWith(o.getClass().toString().replace("class ", "") + ".get")
+                    && wordsMethod[2].endsWith("()") || wordsMethod[1].equals("void") &&
+                    wordsMethod[2].startsWith(o.getClass().toString().replace("class ", "") + ".set")
+                    && !wordsMethod[2].endsWith("()"))) {
+                res.add(method);
+            }
+        }
+        return res;
+    }
 }
