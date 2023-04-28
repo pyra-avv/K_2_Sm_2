@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Service {
+
     public Service() {
     }
+
     /**
      * 1
      * @param Persons список объектов Person
