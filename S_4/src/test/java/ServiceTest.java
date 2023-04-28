@@ -1,3 +1,4 @@
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,5 +37,17 @@ class ServiceTest {
         Service service1 = new Service();
         assertFalse(Service.IsThereAnInterface(service1));
         assertTrue(Service.IsThereAnInterface(student1));
+    }
+
+    @org.junit.jupiter.api.Test
+    void constructorDef() throws InvocationTargetException, InstantiationException, IllegalAccessException {
+        List<Object> list1 = new ArrayList<>(List.of(new Student(), new Person()));
+        List<Class<?>> classes1 = new ArrayList<>(List.of(Student.class, Person.class, class1.class));
+        assertEquals(list1, Service.ConstructorDef(classes1));
+    }
+    @org.junit.jupiter.api.Test
+    void objectClassName() throws ClassNotFoundException, InvocationTargetException, InstantiationException,
+            IllegalAccessException {
+        assertEquals(new Student(), Service.ObjectClassName("Student"));
     }
 }

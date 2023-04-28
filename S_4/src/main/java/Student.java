@@ -3,6 +3,10 @@ import java.util.Objects;
 
 public class Student extends Person implements Serializable {
     private final String group;
+    public Student() {
+        super();
+        this.group = "group";
+    }
     public Student(String name, String group) {
         super(name);
         this.group = group;

@@ -1,4 +1,6 @@
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,10 +71,40 @@ public class Service {
         return interfaces.size() != 0;
     }
 
+    /**
+     * 5
+     * @param classes список объектов класса Class
+     * @return список оъектов, созданных конструктором по умолчанию
+     */
+    public static List<Object> ConstructorDef(List<Class<?>> classes) throws InvocationTargetException,
+            InstantiationException, IllegalAccessException {
+        List<Object> res = new ArrayList<>();
+        for (Class<?> clazz : classes) {
+            Constructor<?>[] constructors = clazz.getConstructors();
+            for (Constructor<?> constructor : constructors) {
+                if (constructor.toString().endsWith("()")) {
+                    res.add(constructor.newInstance());
+                }
+            }
+        }
+        return res;
+    }
 
-
-
-
-
-
+    /**
+     * 6
+     * @param className название класса
+     * @return объект класса "className"
+     * (пусть объект создаётся конструктором по умолчанию, если такового нет, возвращается null)
+     */
+    public static Object ObjectClassName(String className) throws ClassNotFoundException, InvocationTargetException,
+            InstantiationException, IllegalAccessException {
+        Class<?> clazz = Class.forName(className);
+        Constructor<?>[] constructors = clazz.getConstructors();
+        for (Constructor<?> constructor : constructors) {
+            if (constructor.toString().endsWith("()")) {
+                return constructor.newInstance();
+            }
+        }
+        return null;
+    }
 }

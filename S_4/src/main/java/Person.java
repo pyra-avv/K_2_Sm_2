@@ -2,6 +2,9 @@ import java.util.Objects;
 
 public class Person {
     private final String name;
+    public Person() {
+        this.name = "name";
+    }
     public Person(String name) {
         this.name = name;
     }
