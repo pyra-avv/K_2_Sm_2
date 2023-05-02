@@ -32,6 +32,11 @@ public class Human {
     public void setSurname(String surname) {
         this.surname = surname;
     }
+    public final String getStr() {
+        return "str";
+    }
+    final public void setStr(String str) {
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

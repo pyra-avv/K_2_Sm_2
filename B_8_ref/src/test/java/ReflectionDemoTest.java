@@ -29,7 +29,8 @@ class ReflectionDemoTest {
                 "public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException",
                 "public final native java.lang.Class java.lang.Object.getClass()",
                 "public final native void java.lang.Object.notify()",
-                "public final native void java.lang.Object.notifyAll()"));
+                "public final native void java.lang.Object.notifyAll()",
+                "public final java.lang.String Human.getStr()", "public final void Human.setStr(java.lang.String)"));
         List<String> list2 = ReflectionDemo.MethodList(new Human("", "", ""));
         Collections.sort(list1);
         Collections.sort(list2);
@@ -57,7 +58,8 @@ class ReflectionDemoTest {
         List<String> list1 = new ArrayList<>(of("public java.lang.String Human.getName()",
                 "public void Human.setName(java.lang.String)", "public java.lang.String Human.getSurname()",
                 "public java.lang.String Human.getPatronymic()", "public void Human.setSurname(java.lang.String)",
-                "public void Human.setPatronymic(java.lang.String)"));
+                "public void Human.setPatronymic(java.lang.String)", "public final void Human.setStr(java.lang.String)",
+                "public final java.lang.String Human.getStr()"));
         List<String> list2 = ReflectionDemo.getSetAndGet(new Human("", "", ""));
         Collections.sort(list1);
         Collections.sort(list2);

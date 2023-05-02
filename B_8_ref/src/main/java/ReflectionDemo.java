@@ -74,11 +74,29 @@ public class ReflectionDemo {
         List<String> res = new ArrayList<>();
         for (String method : MethodList(o)) {
             String[] wordsMethod = method.split(" ");
-            if (wordsMethod[0].equals("public") && (!wordsMethod[1].equals("void") &&
-                    wordsMethod[2].startsWith(o.getClass().toString().replace("class ", "") + ".get")
-                    && wordsMethod[2].endsWith("()") || wordsMethod[1].equals("void") &&
-                    wordsMethod[2].startsWith(o.getClass().toString().replace("class ", "") + ".set")
-                    && !wordsMethod[2].endsWith("()"))) {
+            boolean publicFlag = false, notStaticFlag = true, setAndGetFlag = false;
+            for (int i = 0; i < wordsMethod.length - 1; i++) {
+                if (wordsMethod[i].equals("public")) {
+                    publicFlag = true;
+                }
+                if (wordsMethod[i].equals("static")) {
+                    notStaticFlag = false;
+                    break;
+                }
+                if (wordsMethod[i].equals("void")) {
+                    if (wordsMethod[i + 1].startsWith(o.getClass().toString().replace("class ", "") +
+                            ".set") && !wordsMethod[i + 1].endsWith("()")) {
+                        setAndGetFlag = true;
+                    }
+                } else {
+                    if (wordsMethod[i + 1].startsWith(o.getClass().toString().replace("class ", "") +
+                            ".get") && wordsMethod[i + 1].endsWith("()")) {
+                        setAndGetFlag = true;
+                    }
+                }
+
+            }
+            if (publicFlag && notStaticFlag && setAndGetFlag) {
                 res.add(method);
             }
         }
