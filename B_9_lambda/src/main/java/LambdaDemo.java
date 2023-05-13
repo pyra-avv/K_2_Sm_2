@@ -42,12 +42,22 @@ public class LambdaDemo {
     /**
      * 6) по двум людям проверить, что у них одинаковая фамилия
      */
-    public static final Lambda5 lambda6 = (human1, human2) -> human1.equals(human2);
+    public static final Lambda5 lambda6 = (human1, human2) -> human1.getSurname().equals(human2.getSurname());
     /**
      * 7) получить фамилию, имя и отчество человека в виде одной строки (разделитель пробел)
      */
-    public static final Lambda6 lambda7 = human -> human.getSurname() + " " +
-            human.getName() + " " + human.getPatronymic();
+    public static final Lambda6 lambda7 = human -> human.getSurname() + " " + human.getName() + " " +
+            human.getPatronymic();
+    /**
+     * 8) сделать человека старше на один год (по объекту Human создать новый объект)
+     */
+    public static final Lambda7 lambda8 = human -> new Human(human.getSurname(), human.getName(), human.getPatronymic(),
+            human.getAge() + 1, human.getSex());
+    /**
+     * 9) по трем людям и заданному возрасту maxAge проверить, что все три человека моложе maxAge
+     */
+    public static final Lambda8 lambda9 = (human1, human2, human3, maxAge) -> human1.getAge() < maxAge &&
+            human2.getAge() < maxAge && human3.getAge() < maxAge;
 }
 
 interface Lambda1 {
@@ -72,4 +82,12 @@ interface Lambda5 {
 
 interface Lambda6 {
     String HumanSt(Human human);
+}
+
+interface Lambda7 {
+    Human HumanHu(Human human);
+}
+
+interface Lambda8 {
+    boolean Human3IntBu(Human human1, Human human2, Human human3, int maxAge);
 }
