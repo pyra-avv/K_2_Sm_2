@@ -175,7 +175,6 @@ public class LambdaDemo {
         humanCollection.clear();
         humanCollection.addAll(mapW.values());
         humanCollection.addAll(mapM.values());
-        return humanCollection;
     };
 }
 
@@ -241,5 +240,5 @@ interface Lambda15 {
 }
 
 interface Lambda16 {
-    Collection<Human> CHumanCHu(Collection<Human> humanCollection);
+    void CHumanCHu(Collection<Human> humanCollection);
 }
