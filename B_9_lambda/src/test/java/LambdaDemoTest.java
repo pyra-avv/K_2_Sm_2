@@ -152,16 +152,16 @@ public class LambdaDemoTest {
     }
     @Test
     void lambda110() {
-        Collection<Human> collection1 = new ArrayList<>(of(new Human("Иванов", "Иван", "Иваныч", 5, 'M'),
+        Collection<Human> collection1 = new ArrayList<>(of(
+                new Human("Иванов", "Иван", "Иваныч", 5, 'M'),
                 new Human("Петров", "Иван", "Иваныч", 17, 'Ж'),
                 new Human("Петров", "Юрий", "Иваныч", 4, 'M'),
                 new Human("Иванов", "Юрий", "Иваныч", 2, 'Ж')));
         Collection<Human> collection2 = new ArrayList<>(of(
-                new Human("Иванов", "Юрий", "Иваныч", 2, 'Ж'),
-                new Human("Петров", "Иван", "Иваныч", 17, 'Ж'),
                 new Human("Петров", "Юрий", "Иваныч", 4, 'M'),
-                new Human("Иванов", "Иван", "Иваныч", 5, 'M')));
-        LambdaRunner.LambdaF1(StreamApiDemo.lambda110, collection1);
-        assertEquals(collection1, collection2);
+                new Human("Иванов", "Иван", "Иваныч", 5, 'M'),
+                new Human("Иванов", "Юрий", "Иваныч", 2, 'Ж'),
+                new Human("Петров", "Иван", "Иваныч", 17, 'Ж')));
+        assertEquals(collection2, LambdaRunner.LambdaF1(StreamApiDemo.lambda110, collection1));
     }
 }
