@@ -10,28 +10,21 @@ public class LambdaDemo {
      * 2) для строки символов получить ее первый символ, если он существует, или null иначе
      */
     public static final Function<String, Character> lambda2 = str -> {
-        if (str == null) {
-            return null;
-        }
-      if (!str.isEmpty()) {
+      if (str != null && !str.isEmpty()) {
           return str.charAt(0);
       }
-        return null;
+      return null;
     };
     /**
      * 3) для строки проверить, что она не содержит пробелов
      */
-    public static final Function<String, Boolean> lambda3 = str -> {
-        String[] strings = str.split(" ");
-        return strings.length == 1;
-    };
+    public static final Function<String, Boolean> lambda3 = str -> str.split(" ").length == 1;
     /**
      * 4) слова в строке разделены запятыми, по строке получить количество слов в ней
      */
     public static final Function<String, Integer> lambda4 = str -> {
         int k = 0;
-        String[] strings = str.split(",");
-        for (String s : strings) {
+        for (String s : str.split(",")) {
             if (!s.equals("")) {
                 k++;
             }

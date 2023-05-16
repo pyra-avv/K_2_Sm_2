@@ -1,6 +1,11 @@
 import java.util.Objects;
 
 public class Human {
+    @Override
+    public String toString() {
+        return  surname + ' ' + name + ' ' + patronymic + ' '+ age + " " + sex;
+    }
+
     private String surname;
     private String name;
     private String patronymic;
