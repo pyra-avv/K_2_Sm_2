@@ -123,7 +123,7 @@ public class LambdaDemoTest {
     @Test
     void lambda15() {
         Integer[] arr1 = { 2, 6, 9, 2, 5 };
-        assertEquals(new ArrayList<>(of(81, 4, 36, 25)), LambdaRunner.LambdaF1(StreamApiDemo.lambda15, arr1));
+        assertEquals(new ArrayList<>(of(4, 36, 81, 25)), LambdaRunner.LambdaF1(StreamApiDemo.lambda15, arr1));
     }
     @Test
     void lambda16() {
