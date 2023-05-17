@@ -22,8 +22,8 @@ public class StreamApiDemo extends LambdaDemo {
      * 4) всписке целых чисел получить первое чётное число или null, если в списке нет чётных чисел
      */
     public static final Function<List<Integer>, Integer> lambda14 = integers ->
-            //integers.stream().filter(x -> x % 2 == 0).limit(1).;
-            integers.stream().filter(x -> x % 2 == 0).findFirst().orElseThrow();
+        integers.stream().filter(x -> x % 2 == 0).findFirst().orElse(null);
+
     /**
      * 5) по массиву целых чисел построить список квадратов элементов массива без повторений
      */
@@ -49,17 +49,10 @@ public class StreamApiDemo extends LambdaDemo {
      */
     public static final Function<Collection<Human>, Integer> lambda19 = humanCollection ->
             humanCollection.stream().map(Human::getAge).reduce(0, (max, x) -> x > max ? x : max);
+
     /**
      * 10) отсортируйте коллекцию людей сначала по полу, потом по возрасту
      */
     public static final Function<Collection<Human>, Collection<Human>> lambda110 = humanCollection ->
             humanCollection.stream().sorted(Comparator.comparing(Human::getSex).thenComparing(Human::getAge)).toList();
-//            humanCollection.stream().sorted((o1, o2) -> {
-//                Character c1 = o1.getSex();
-//                Character c2 = o2.getSex();
-//                return c1.compareTo(c2);
-//            }).sorted((o1, o2) -> {
-//                Integer i1 = o1.getAge();
-//                return i1.compareTo(o2.getAge());
-//            }).toList();
 }

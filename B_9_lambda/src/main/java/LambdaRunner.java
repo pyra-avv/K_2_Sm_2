@@ -33,7 +33,7 @@ public class LambdaRunner {
      * @param p параметр
      * @return результат
      */
-    public static <T, U, Q, P, R> R LambdaF4(Function4<T, U, Q, P, R> lambda, T t, U u, Q q, P p) {
+    public static <T, U, Q, P, R> R LambdaF4(QuaFunction<T, U, Q, P, R> lambda, T t, U u, Q q, P p) {
         return lambda.apply(t, u, q, p);
     }
 

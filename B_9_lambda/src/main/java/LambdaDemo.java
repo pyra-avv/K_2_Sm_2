@@ -1,5 +1,6 @@
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class LambdaDemo {
     /**
@@ -22,15 +23,8 @@ public class LambdaDemo {
     /**
      * 4) слова в строке разделены запятыми, по строке получить количество слов в ней
      */
-    public static final Function<String, Integer> lambda4 = str -> {
-        int k = 0;
-        for (String s : str.split(",")) {
-            if (!s.equals("")) {
-                k++;
-            }
-        }
-        return k;
-    };
+    public static final Function<String, Integer> lambda4 = str ->
+            Stream.of(str.split(",")).filter(s -> !s.equals("")).toList().size();
     /**
      * 5) по человеку получить его возраст
      */
@@ -53,12 +47,11 @@ public class LambdaDemo {
     /**
      * 9) по трем людям и заданному возрасту maxAge проверить, что все три человека моложе maxAge
      */
-    public static final Function4<Human, Human, Human, Integer, Boolean> lambda9 = (human1, human2, human3, maxAge) ->
+    public static final QuaFunction<Human, Human, Human, Integer, Boolean> lambda9 = (human1, human2, human3, maxAge) ->
             human1.getAge() < maxAge && human2.getAge() < maxAge && human3.getAge() < maxAge;
-
 }
 
 @FunctionalInterface
-interface Function4<T, U, Q, P, R> {
+interface QuaFunction<T, U, Q, P, R> {
     R apply(T t, U u, Q q, P p);
 }
