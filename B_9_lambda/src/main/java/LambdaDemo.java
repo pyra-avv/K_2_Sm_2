@@ -11,10 +11,10 @@ public class LambdaDemo {
      * 2) для строки символов получить ее первый символ, если он существует, или null иначе
      */
     public static final Function<String, Character> lambda2 = str -> {
-      if (str != null && !str.isEmpty()) {
-          return str.charAt(0);
-      }
-      return null;
+        if (str == null || str.isEmpty()) {
+            return null;
+        }
+        return str.charAt(0);
     };
     /**
      * 3) для строки проверить, что она не содержит пробелов

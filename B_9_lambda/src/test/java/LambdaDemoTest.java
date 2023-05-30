@@ -112,6 +112,7 @@ public class LambdaDemoTest {
         List<Object> list2 = new ArrayList<>(of(new Student("", "","", 5,'М',
                 "","",""), "44648", "411165"));
         assertEquals(list2, LambdaRunner.LambdaF1(StreamApiDemo.lambda13, list1));
+        assertEquals(List.of(1,2), LambdaRunner.LambdaF1(StreamApiDemo.lambda13, List.of(1,2)));
     }
     @Test
     void lambda14() {

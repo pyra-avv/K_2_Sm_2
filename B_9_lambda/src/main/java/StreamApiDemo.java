@@ -11,13 +11,13 @@ public class StreamApiDemo extends LambdaDemo {
     /**
      * 2) во множестве целых чисел найти количество положительных значений
      */
-    public static final Function<Set<Integer>, Integer> lambda12 = integerSet ->
-            Math.toIntExact(integerSet.stream().filter(x -> x > 0).count());
+    public static final Function<Set<Integer>, Long> lambda12 = integerSet ->
+            integerSet.stream().filter(x -> x > 0).count();
     /**
      * 3) в списке объектов получить последние три элемента
      */
     public static final Function<List<Object>, List<Object>> lambda13 = objectList ->
-            objectList.stream().skip(objectList.size() - 3).toList();
+            objectList.stream().skip(Math.max(0, objectList.size() - 3)).toList();
     /**
      * 4) всписке целых чисел получить первое чётное число или null, если в списке нет чётных чисел
      */
@@ -33,7 +33,7 @@ public class StreamApiDemo extends LambdaDemo {
      * 6) по списку строк построить список, содержащий все непустые строки упорядоченные по возростанию
      */
     public static final Function<List<String>, List<String>> lambda16 = strings ->
-            strings.stream().filter(s -> !s.equals("")).sorted().toList();
+            strings.stream().filter(s -> !("").equals(s)).sorted().toList();
     /**
      * 7) множество строк превратить в список, упорядоченный по убыванию
      */
@@ -43,12 +43,12 @@ public class StreamApiDemo extends LambdaDemo {
      * 8) для множества целых чисел вычислить сумму квадратов его элементов
      */
     public static final Function<Set<Integer>, Integer> lambda18 = integerSet ->
-            integerSet.stream().reduce(0, (k, x) -> k + x * x);
+            integerSet.stream().mapToInt(x -> x * x).sum();
     /**
      * 9) В коллекции людей вычислить максимальный возраст человека
      */
     public static final Function<Collection<Human>, Integer> lambda19 = humanCollection ->
-            humanCollection.stream().map(Human::getAge).reduce(0, (max, x) -> x > max ? x : max);
+            humanCollection.stream().mapToInt(Human::getAge).max().orElse(0);
 
     /**
      * 10) отсортируйте коллекцию людей сначала по полу, потом по возрасту
