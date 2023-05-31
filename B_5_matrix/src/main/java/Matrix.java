@@ -1,9 +1,6 @@
 import java.util.Arrays;
 
-//import static sun.jvm.hotspot.gc.shared.CollectedHeapName.EPSILON;
-
-
-public class Matrix implements IMatrix { // квадратная матрица произвольного вида
+public class Matrix implements IMatrix, Comparable<Matrix> { // квадратная матрица произвольного вида
     private final double[] arr;
     private final int n;
     private double det;
@@ -113,6 +110,18 @@ public class Matrix implements IMatrix { // квадратная матрица 
 
     public void setDet(double det) {
         this.det = det;
+    }
+
+    @Override
+    public int compareTo(Matrix m) {
+        Double d1 = this.Determinant();
+        Double d2 = m.Determinant();
+        return d1.compareTo(d2);
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(arr);
     }
 
     // приватные вспомогательные функции для нахождения определителя

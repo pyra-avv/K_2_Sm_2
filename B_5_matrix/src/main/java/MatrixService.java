@@ -1,3 +1,8 @@
+import java.util.Arrays;
+
 public class MatrixService {
-    //public static void arrangeMatrices(Matrix)
+    public static Matrix[] arrangeMatrices(Matrix[] matrices) {
+        Arrays.sort(matrices);
+        return matrices;
+    }
 }
